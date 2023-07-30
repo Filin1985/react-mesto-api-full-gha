@@ -84,9 +84,8 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'https://nomoreparties.co/v1/cohort-65',
+  url: 'https://api.my.places.nomoredomains.sbs',
   headers: {
-    authorization: 'c750cc95-4563-4f0a-9bd8-3b5e3b84a4af',
     'Content-Type': 'application/json',
   },
 })
