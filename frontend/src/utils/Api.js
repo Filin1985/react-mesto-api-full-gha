@@ -84,8 +84,9 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'https://api.my.places.nomoredomains.sbs',
+  url: 'http://localhost:3000',
   headers: {
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   },
 })
