@@ -40,12 +40,12 @@ class Auth {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
   }
 }
 
 export const auth = new Auth({
-  url: 'https://auth.nomoreparties.co',
+  url: 'https://localhost:3000',
 })
