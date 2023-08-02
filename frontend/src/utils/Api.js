@@ -1,5 +1,5 @@
 class Api {
-  constructor({url, headers}) {
+  constructor({ url, headers }) {
     this._url = url
     this._headers = headers
   }
@@ -92,7 +92,7 @@ class Api {
 }
 
 export const api = new Api({
-  url: 'http://localhost:3000',
+  url: 'https://api.my.places.nomoredomains.sbs',
   headers: {
     'Content-Type': 'application/json',
   },
