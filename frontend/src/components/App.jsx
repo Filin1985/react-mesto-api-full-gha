@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -12,11 +12,11 @@ import Loader from './Loader'
 import ProtectedRoute from './ProtectedRoute'
 import Login from './Login'
 import Register from './Register'
-import {api} from '../utils/Api'
-import {auth} from '../utils/Auth'
-import {CurrentUserContext} from '../contexts/CurrentUserContext'
-import {CardContext} from '../contexts/CardContext'
-import {PopupContext} from '../contexts/PopupContext'
+import { api } from '../utils/Api'
+import { auth } from '../utils/Auth'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { CardContext } from '../contexts/CardContext'
+import { PopupContext } from '../contexts/PopupContext'
 import {
   Route,
   Routes,
@@ -49,7 +49,7 @@ function App() {
     api
       .getUserProfile()
       .then((res) => {
-        setCurrentUser(res)
+        setCurrentUser(res.user)
       })
       .catch((error) => {
         console.log(error)
@@ -57,21 +57,21 @@ function App() {
     api
       .getAllCards()
       .then((res) => {
-        setCards(res)
+        setCards(res.cards)
       })
       .catch((error) => {
         console.log(error)
       })
-  }, [])
+  }, [loggedIn])
 
   const checkUser = () => {
     auth
       .checkUser()
       .then((res) => {
-        if (!res.data) {
+        if (!res.user) {
           return
         }
-        setUserEmail(res.data.email)
+        setUserEmail(res.user.email)
         setLoggedIn(true)
         navigate(location.pathname)
       })
@@ -118,13 +118,13 @@ function App() {
   }
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((like) => like._id === currentUser._id)
+    const isLiked = card.likes.some((like) => like === currentUser._id)
     if (isLiked) {
       api
         .removeLikeFromCard(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+            state.map((c) => (c._id === card._id ? newCard.cardWithoutLike : c))
           )
         })
         .catch((error) => {
@@ -135,7 +135,7 @@ function App() {
         .addLikeToCard(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+            state.map((c) => (c._id === card._id ? newCard.cardWithLike : c))
           )
         })
         .catch((error) => {
@@ -170,28 +170,28 @@ function App() {
       .finally(() => setIsLoading(false))
   }
 
-  const handleUpdateUser = ({name, about}) => {
+  const handleUpdateUser = ({ name, about }) => {
     const makeRequest = () => {
       return api.saveProfileData(name, about).then((res) => {
-        setCurrentUser(res)
+        setCurrentUser(res.updatedUser)
       })
     }
     handleSubmit(makeRequest)
   }
 
-  const handleUpdateAvatar = ({avatar}) => {
+  const handleUpdateAvatar = ({ avatar }) => {
     const makeRequest = () => {
       return api.editAvatar(avatar).then((res) => {
-        setCurrentUser(res)
+        setCurrentUser(res.updatedUser)
       })
     }
     handleSubmit(makeRequest)
   }
 
-  const handleAddPlaceSubmit = ({name, link}) => {
+  const handleAddPlaceSubmit = ({ name, link }) => {
     const makeRequest = () => {
       return api.addNewCard(name, link).then((res) => {
-        setCards([res, ...cards])
+        setCards([res.newCard, ...cards])
       })
     }
     handleSubmit(makeRequest)
@@ -201,7 +201,6 @@ function App() {
     auth
       .loginUser(email, password)
       .then((res) => {
-        localStorage.setItem('token', res.token)
         setLoggedIn(true)
         navigate('/react-mesto-auth')
       })
@@ -226,7 +225,7 @@ function App() {
               type: 'valid',
             })
             setIsTooltipPopupOpen(true)
-            navigate('/sign-in', {replace: true})
+            navigate('/sign-in', { replace: true })
           }
         })
         .catch((error) => {
@@ -241,8 +240,14 @@ function App() {
   }
 
   const handleLogout = () => {
-    setLoggedIn(false)
-    setUserEmail('')
+    auth.logoutUser().then(res => {
+      if (res.ok) {
+        setLoggedIn(false)
+        setUserEmail('')
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 
   if (loggedIn === null) {
@@ -250,7 +255,7 @@ function App() {
   }
 
   return (
-    <PopupContext.Provider value={{isLoading, closeAllPopups}}>
+    <PopupContext.Provider value={{ isLoading, closeAllPopups }}>
       <CurrentUserContext.Provider value={currentUser}>
         <CardContext.Provider value={cards}>
           <div className='page'>

@@ -8,12 +8,10 @@ const Card = ({ card, onCardClick, onCardLike, onDeleteClick }) => {
   const handleClick = () => {
     onCardClick(card)
   }
-
-  const isOwn = card.owner._id === currentUser._id
-  const isLiked = card.likes.some((like) => like._id === currentUser._id)
-  const cardLikeButtonClassName = `elements__like ${
-    isLiked && 'elements__like_active'
-  }`
+  const isOwn = card.owner === currentUser._id
+  const isLiked = card.likes.some((like) => like === currentUser._id)
+  const cardLikeButtonClassName = `elements__like ${isLiked && 'elements__like_active'
+    }`
 
   return (
     <li className='elements__element'>

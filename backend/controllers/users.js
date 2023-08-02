@@ -105,3 +105,12 @@ module.exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.logout = (req, res) => {
+  res.cookie('jwt', 'none', {
+    maxAge: 10000,
+    httpOnly: true,
+    sameSite: true,
+  });
+  res.send({ message: 'Вы вышли!' });
+};

@@ -1,7 +1,7 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import Card from './Card'
-import {CurrentUserContext} from '../contexts/CurrentUserContext'
-import {CardContext} from '../contexts/CardContext'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import { CardContext } from '../contexts/CardContext'
 
 const Main = ({
   onEditAvatar,

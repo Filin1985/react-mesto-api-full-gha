@@ -5,10 +5,10 @@ const { celebrate, Joi } = require('celebrate');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 
+const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const { login, createNewUser } = require('./controllers/users');
@@ -30,7 +30,7 @@ mongoose
   .catch((error) => console.log(error));
 
 const app = express();
-app.use(cors());
+app.use(cors);
 app.use(requestLogger);
 app.use(express.json());
 app.use(cookieParser());

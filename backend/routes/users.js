@@ -7,12 +7,14 @@ const {
   updateUserProfile,
   updateUserAvatar,
   getUserProfile,
+  logout,
 } = require('../controllers/users');
 // eslint-disable-next-line camelcase
 const { URl_VALIDATOR_REG_EXP } = require('../config');
 
 router.get('/', getUsers);
 router.get('/me', getUserProfile);
+router.delete('/me', logout);
 router.get('/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().required().length(24).hex(),

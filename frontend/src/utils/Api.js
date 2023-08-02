@@ -20,12 +20,14 @@ class Api {
   getUserProfile() {
     return this._request(`${this._url}/users/me`, {
       headers: this._headers,
+      credentials: "include",
     })
   }
 
   getAllCards() {
     return this._request(`${this._url}/cards`, {
       headers: this._headers,
+      credentials: "include",
     })
   }
 
@@ -37,6 +39,7 @@ class Api {
         name: newName,
         about: newProfession,
       }),
+      credentials: "include",
     })
   }
 
@@ -48,6 +51,7 @@ class Api {
         name: name,
         link: link,
       }),
+      credentials: "include",
     })
   }
 
@@ -55,6 +59,7 @@ class Api {
     return this._request(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
+      credentials: "include",
     })
   }
 
@@ -62,6 +67,7 @@ class Api {
     return this._request(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
+      credentials: "include",
     })
   }
 
@@ -69,6 +75,7 @@ class Api {
     return this._request(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
+      credentials: "include",
     })
   }
 
@@ -79,6 +86,7 @@ class Api {
       body: JSON.stringify({
         avatar,
       }),
+      credentials: "include",
     })
   }
 }
@@ -86,7 +94,6 @@ class Api {
 export const api = new Api({
   url: 'http://localhost:3000',
   headers: {
-    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   },
 })

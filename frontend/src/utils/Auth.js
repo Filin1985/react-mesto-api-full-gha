@@ -1,5 +1,5 @@
 class Auth {
-  constructor({url}) {
+  constructor({ url }) {
     this._url = url
   }
 
@@ -21,7 +21,7 @@ class Auth {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({email, password}),
+      body: JSON.stringify({ email, password }),
     })
   }
 
@@ -31,7 +31,18 @@ class Auth {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({email, password}),
+      body: JSON.stringify({ email, password }),
+      credentials: "include",
+    })
+  }
+
+  logoutUser() {
+    return this._request(`${this._url}/users/me`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: "include",
     })
   }
 
@@ -40,12 +51,12 @@ class Auth {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
       },
+      credentials: "include",
     })
   }
 }
 
 export const auth = new Auth({
-  url: 'https://localhost:3000',
+  url: 'http://localhost:3000',
 })
