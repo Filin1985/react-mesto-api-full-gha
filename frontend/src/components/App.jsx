@@ -219,7 +219,7 @@ function App() {
       auth
         .registerUser(email, password)
         .then((res) => {
-          if (res.data) {
+          if (res) {
             setTooltip({
               text: 'Вы успешно зарегистрированы!',
               type: 'valid',
