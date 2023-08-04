@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 
 const cors = require('./middlewares/cors');
+const limiter = require('./middlewares/rateLimiter');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const { login, createNewUser } = require('./controllers/users');
@@ -35,6 +36,7 @@ app.use(requestLogger);
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
+app.use(limiter);
 app.use(cors);
 
 app.get('/crash-test', () => {
