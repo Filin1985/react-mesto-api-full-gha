@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const { login, createNewUser } = require('./controllers/users');
@@ -34,16 +34,8 @@ const app = express();
 app.use(requestLogger);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: ['http://my.places.nomoredomains.sbs',
-    'https://my.places.nomoredomains.sbs',
-    'http://158.160.114.35',
-    'https://158.160.114.35',
-    'http://localhost:3000',
-    'http://localhost:3001'],
-  credentials: true,
-}));
 app.use(helmet());
+app.use(cors);
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
