@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP 158.160.50.70
+IP 158.160.114.35
 
 Frontend https://my.places.nomoredomains.sbs
 
