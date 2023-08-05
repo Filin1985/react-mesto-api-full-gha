@@ -1,9 +1,9 @@
 import React from 'react'
-import {useForm} from '../hooks/useForm'
-import {Link} from 'react-router-dom'
+import { useForm } from '../hooks/useForm'
+import { Link } from 'react-router-dom'
 
-const Register = ({handleRegister}) => {
-  const {values, handleChange} = useForm({
+const Register = ({ handleRegister }) => {
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
   })
@@ -15,7 +15,7 @@ const Register = ({handleRegister}) => {
 
   return (
     <div className='auth'>
-      <h2 className='auth__title'>Регистрация</h2>
+      <h2 className='auth__title'>Sign Up</h2>
       <form className='auth__form' action='submit' onSubmit={handleSubmit}>
         <fieldset className='auth__set'>
           <label className='auth__field'>
@@ -37,7 +37,7 @@ const Register = ({handleRegister}) => {
               type='password'
               id='password'
               className='auth__input'
-              placeholder='Пароль'
+              placeholder='Password'
               value={values.password}
               onChange={handleChange}
               required
@@ -48,14 +48,14 @@ const Register = ({handleRegister}) => {
             className='button button_type_submit button_type_auth'
             type='submit'
           >
-            Зарегистрироваться
+            SignUp
           </button>
         </fieldset>
       </form>
       <p className='auth__login'>
-        Уже зарегистрировались?{' '}
+        Are you already registered?{' '}
         <Link to='/sign-in' className='auth__link'>
-          Войти
+          Login
         </Link>
       </p>
     </div>

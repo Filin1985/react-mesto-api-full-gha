@@ -207,7 +207,7 @@ function App() {
       .catch((error) => {
         console.log(error)
         setTooltip({
-          text: 'Что-то пошло не так! Попробуйте еще раз.',
+          text: 'There are some problems. Try again later.',
           type: 'invalid',
         })
         setIsTooltipPopupOpen(true)
@@ -221,7 +221,7 @@ function App() {
         .then((res) => {
           if (res) {
             setTooltip({
-              text: 'Вы успешно зарегистрированы!',
+              text: 'Success!',
               type: 'valid',
             })
             setIsTooltipPopupOpen(true)
@@ -231,7 +231,7 @@ function App() {
         .catch((error) => {
           console.log(error)
           setTooltip({
-            text: 'Что-то пошло не так! Попробуйте еще раз.',
+            text: 'There are some problems. Try again later.',
             type: 'invalid',
           })
           setIsTooltipPopupOpen(true)

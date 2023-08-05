@@ -9,7 +9,7 @@ class Api {
       return res.json()
     }
     return Promise.reject(
-      `Возникла ошибка ${res.status} при запросу к ${this._url}`
+      `Something fo wrong ${res.status} with request to ${this._url}`
     )
   }
 

@@ -1,13 +1,14 @@
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
 # react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
-  
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/Filin1985/react-mesto-api-full-gha
+Repository for the application of the `Place` project, which includes the front-end and back-end parts of the application with the following features: authorization and registration of users, operations with cards and users. Place the backend in `backend/` and the frontend in `frontend/`.
 
-## Ссылки на проект
+Please attach a link to the site hosted on Yandex.Cloud in this description.
+
+Repository address: https://github.com/Filin1985/react-mesto-api-full-gha
+
+## Links to the project
 
 IP 158.160.114.35
 

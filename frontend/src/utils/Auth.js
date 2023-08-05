@@ -7,7 +7,7 @@ class Auth {
     if (res.ok) {
       return res.json()
     }
-    return Promise.reject(`Возникла ошибка ${res.status}`)
+    return Promise.reject(`An error occurred ${res.status}`)
   }
 
   _request(url, options) {

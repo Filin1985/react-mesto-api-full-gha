@@ -23,7 +23,7 @@ module.exports.getUserById = async (req, res, next) => {
     const { userId } = req.params;
     const user = await User.findById({ _id: userId });
     if (!user) {
-      throw new NotFoundError('Такого id не существует!', 'NotFoundError');
+      throw new NotFoundError('This id does not exist!', 'NotFoundError');
     }
     res.send({ user });
   } catch (err) {
@@ -49,7 +49,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
     const owner = req.user._id;
     const userForUpdate = await User.findById({ _id: owner });
     if (!userForUpdate) {
-      throw new NotFoundError('Такого пользователя не существует!', 'NotFoundError');
+      throw new NotFoundError('This user does not exist!', 'NotFoundError');
     }
     const updatedUser = await User.findByIdAndUpdate(
       owner,
@@ -67,7 +67,7 @@ module.exports.getUserProfile = async (req, res, next) => {
     const ownerId = req.user._id;
     const user = await User.findById({ _id: ownerId });
     if (!user) {
-      throw new NotFoundError('Такого id не существует!', 'NotFoundError');
+      throw new NotFoundError('This id does not exist!', 'NotFoundError');
     }
     res.send({ user });
   } catch (err) {
@@ -81,7 +81,7 @@ module.exports.updateUserAvatar = async (req, res, next) => {
     const owner = req.user._id;
     const userForUpdate = await User.findById({ _id: owner });
     if (!userForUpdate) {
-      throw new NotFoundError('Такого пользователя не существует!', 'NotFoundError');
+      throw new NotFoundError('This user does not exist!', 'NotFoundError');
     }
     const updatedUser = await User.findByIdAndUpdate(
       owner,
@@ -112,5 +112,5 @@ module.exports.logout = (req, res) => {
     httpOnly: true,
     sameSite: true,
   });
-  res.send({ message: 'Вы вышли!' });
+  res.send({ message: 'You are logout!' });
 };

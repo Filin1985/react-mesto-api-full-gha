@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import PopupWithForm from './PopupWithForm'
 import Input from './ui/Input'
-import {useForm} from '../hooks/useForm'
+import { useForm } from '../hooks/useForm'
 
-const NewPlaceForm = ({isOpen, onAddNewCard}) => {
-  const {values, handleChange, setValues} = useForm({
+const NewPlaceForm = ({ isOpen, onAddNewCard }) => {
+  const { values, handleChange, setValues } = useForm({
     name: '',
     prof: '',
   })
@@ -29,7 +29,7 @@ const NewPlaceForm = ({isOpen, onAddNewCard}) => {
   return (
     <PopupWithForm
       name='card'
-      title='Новое место'
+      title='New place'
       onSubmit={handleSubmit}
       isButtonDisable={isButtonActive}
       isOpen={isOpen}
@@ -40,7 +40,7 @@ const NewPlaceForm = ({isOpen, onAddNewCard}) => {
         valueName={values.name}
         handleChange={handleChange}
         name={'name'}
-        placeholder={'Название'}
+        placeholder={'Name'}
         minLength='2'
         maxLength='30'
         extraClassName='popup__item popup__item_el_name'
@@ -52,7 +52,7 @@ const NewPlaceForm = ({isOpen, onAddNewCard}) => {
         valueName={values.link}
         handleChange={handleChange}
         name={'link'}
-        placeholder={'Ссылка на картинку'}
+        placeholder={'Link to the picture'}
         extraClassName='popup__item popup__item_el_name'
         required
       />

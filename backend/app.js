@@ -59,7 +59,7 @@ app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
 
 app.all('*', (req, res, next) => {
-  next(new NotFoundError('Такой страницы нет!', 'NotFoundError'));
+  next(new NotFoundError('Page does not exist!', 'NotFoundError'));
 });
 
 app.use(errorLogger);

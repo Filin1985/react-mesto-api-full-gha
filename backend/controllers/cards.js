@@ -29,10 +29,10 @@ module.exports.deleteCard = async (req, res, next) => {
     const userId = req.user._id;
     const card = await Card.findById({ _id: cardId });
     if (!card) {
-      throw new NotFoundError('Такого id не существует!', 'NotFoundError');
+      throw new NotFoundError('This id does not exist!', 'NotFoundError');
     }
     if (userId !== card.owner.valueOf()) {
-      throw new ForbiddenError('Вы не имеете права удалять чужие карточки!', 'ForbiddenError');
+      throw new ForbiddenError('You have no right to delete other people`s cards!', 'ForbiddenError');
     }
     await card.deleteOne();
     res.status(200).send({ card });
@@ -49,7 +49,7 @@ module.exports.addLikeToCard = async (req, res, next) => {
       { new: true },
     );
     if (!cardWithLike) {
-      throw new NotFoundError('Такого id не существует!', 'NotFoundError');
+      throw new NotFoundError('This id does not exist!', 'NotFoundError');
     }
     res.send({ cardWithLike });
   } catch (err) {
@@ -65,7 +65,7 @@ module.exports.deleteLikeFromCard = async (req, res, next) => {
       { new: true },
     );
     if (!cardWithoutLike) {
-      throw new NotFoundError('Такого id не существует!', 'NotFoundError');
+      throw new NotFoundError('This id does not exist!', 'NotFoundError');
     }
     res.send({ cardWithoutLike });
   } catch (err) {

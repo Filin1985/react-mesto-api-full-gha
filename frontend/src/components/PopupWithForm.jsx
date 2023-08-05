@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import {PopupContext} from '../contexts/PopupContext'
+import React, { useContext } from 'react'
+import { PopupContext } from '../contexts/PopupContext'
 import Popup from './Popup'
 import Form from './ui/Form'
 
@@ -10,9 +10,9 @@ const PopupWithForm = ({
   onSubmit,
   isButtonDisable = false,
   isOpen,
-  buttonText = 'Сохранить',
+  buttonText = 'Save',
 }) => {
-  const {isLoading, closeAllPopups} = useContext(PopupContext)
+  const { isLoading, closeAllPopups } = useContext(PopupContext)
 
   return (
     <Popup isOpen={isOpen} onClose={closeAllPopups} name={name}>

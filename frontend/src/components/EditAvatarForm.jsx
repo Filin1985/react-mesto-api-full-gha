@@ -1,7 +1,7 @@
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 import PopupWithForm from './PopupWithForm'
 
-const EditAvatarForm = ({isOpen, onUpdateAvatar}) => {
+const EditAvatarForm = ({ isOpen, onUpdateAvatar }) => {
   const avatarRef = useRef()
 
   const handleSubmit = (e) => {
@@ -15,7 +15,7 @@ const EditAvatarForm = ({isOpen, onUpdateAvatar}) => {
     <>
       <PopupWithForm
         name='avatar'
-        title='Обновить аватар'
+        title='Update avatar'
         onSubmit={handleSubmit}
         isOpen={isOpen}
       >
@@ -26,7 +26,7 @@ const EditAvatarForm = ({isOpen, onUpdateAvatar}) => {
             className='popup__item popup__item_el_prof'
             type='url'
             name='avatar'
-            placeholder='Ссылка на картинку'
+            placeholder='Link to the picture'
             required
           />
           <span className='popup__item-error avatar-input-error'></span>

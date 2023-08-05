@@ -1,8 +1,8 @@
 import React from 'react'
-import {useForm} from '../hooks/useForm'
+import { useForm } from '../hooks/useForm'
 
-const Login = ({handleLogin}) => {
-  const {values, handleChange} = useForm({
+const Login = ({ handleLogin }) => {
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
   })
@@ -14,7 +14,7 @@ const Login = ({handleLogin}) => {
 
   return (
     <div className='auth'>
-      <h2 className='auth__title'>Вход</h2>
+      <h2 className='auth__title'>Login</h2>
       <form className='auth__form' action='submit' onSubmit={handleSubmit}>
         <fieldset className='auth__set'>
           <label className='auth__field'>
@@ -36,7 +36,7 @@ const Login = ({handleLogin}) => {
               type='password'
               id='password'
               className='auth__input'
-              placeholder='Пароль'
+              placeholder='Password'
               value={values.password}
               onChange={handleChange}
               required
@@ -47,7 +47,7 @@ const Login = ({handleLogin}) => {
             className='button button_type_submit button_type_auth'
             type='submit'
           >
-            Войти
+            Login
           </button>
         </fieldset>
       </form>

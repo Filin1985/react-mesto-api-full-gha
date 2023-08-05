@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import mestoLogo from '../images/logo.svg'
-import {Link, Routes, Route, useNavigate} from 'react-router-dom'
+import { Link, Routes, Route, useNavigate } from 'react-router-dom'
 
-const Header = ({email, onLogout}) => {
+const Header = ({ email, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleOpenMenu = () => {
@@ -15,7 +15,7 @@ const Header = ({email, onLogout}) => {
     <header className={isBurgerMenu ? 'header header_open' : 'header'}>
       <div className='header__box'>
         <Link to='/react-mesto-auth'>
-          <img src={mestoLogo} alt='Логотип Mesto' className='header__logo' />
+          <img src={mestoLogo} alt='Logo Mesto' className='header__logo' />
         </Link>
         {email && (
           <button
@@ -25,7 +25,7 @@ const Header = ({email, onLogout}) => {
                 : 'button header__burger'
             }
             type='button'
-            aria-label='меню'
+            aria-label='menu'
             onClick={handleOpenMenu}
           ></button>
         )}
@@ -55,7 +55,7 @@ const Menu = (props) => {
   const handleLogout = () => {
     localStorage.removeItem('token')
     props.onLogout()
-    navigate('/sign-in', {replace: true})
+    navigate('/sign-in', { replace: true })
   }
 
   return (
@@ -68,7 +68,7 @@ const Menu = (props) => {
     >
       <p className='header__email'>{props.email}</p>
       <button className='button header__logout' onClick={handleLogout}>
-        Выйти
+        Logout
       </button>
     </div>
   )
@@ -77,7 +77,7 @@ const Menu = (props) => {
 const SignInLink = () => {
   return (
     <Link className='header__link' to='/sign-in'>
-      Войти
+      Login
     </Link>
   )
 }
@@ -85,7 +85,7 @@ const SignInLink = () => {
 const SignUpLink = () => {
   return (
     <Link className='header__link' to='/sign-up'>
-      Регистрация
+      SignUp
     </Link>
   )
 }
